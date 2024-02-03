@@ -33,7 +33,11 @@ const Feed = ({ url }: TProps) => {
   const parser = new XMLParser()
   const [title, setTitle] = useState('')
   const [updated, setUpdated] = useState<Date>(new Date())
-  const [image, setImage] = useState<TImage>({})
+  const [image, setImage] = useState<TImage>({
+    url: '',
+    title: '',
+    link: '',
+  })
   const [articles, setArticles] = useState<TArticle>([])
   const [articlesShown, setArticlesShown] = useState(DEFAULT_ARTICLE_LENGTH)
   
