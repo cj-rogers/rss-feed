@@ -31,6 +31,7 @@ function formatTimestamp (timestamp: Date) {
 
 const Feed = ({ url }: TProps) => {
   const parser = new XMLParser()
+  const URL = 'https://corsproxy.io/?' + encodeURIComponent(url)
   const [title, setTitle] = useState('')
   const [updated, setUpdated] = useState<Date>(new Date())
   const [image, setImage] = useState<TImage>({
@@ -43,7 +44,7 @@ const Feed = ({ url }: TProps) => {
   
   useEffect(() => {
     const fetchArticles = async () => {
-      const xmlString = await fetch(url).then(res => res.text())
+      const xmlString = await fetch(URL).then(res => res.text())
       const { rss } = parser.parse(xmlString)
       const feed = rss?.channel
       console.log(feed)
