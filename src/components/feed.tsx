@@ -47,7 +47,6 @@ const Feed = ({ url }: TProps) => {
       const xmlString = await fetch(URL).then(res => res.text())
       const { rss } = parser.parse(xmlString)
       const feed = rss?.channel
-      console.log(feed)
       setTitle(feed?.title)
       setUpdated(feed?.lastBuildDate)
       setImage(feed?.image)
@@ -72,17 +71,17 @@ const Feed = ({ url }: TProps) => {
 
   return (
     <div>
-      <div className='sticky top-0 bg-white/90 py-4'>
+      <div className='sticky top-0 bg-white/90 h-24 flex flex-col gap-2 justify-center'>
         <a href={image.link} className='flex gap-4 items-center' target='_blank' rel='noreferrer'>
           <img className='w-24 h-auto' src={image.url} alt={image.title} />
-          <h2 className='font-semibold text-pretty text-gray-900'>{title}</h2>
+          <h2 className='text-base font-semibold text-pretty text-gray-900'>{title}</h2>
         </a>
-        <time className='block text-xs mt-2'>Updated: {formatRelative(updated, new Date())}</time>
+        <time className='text-xs'>Updated: {formatRelative(updated, new Date())}</time>
       </div>
-      <div className='overflow-auto h-full divide-y divide-gray-200'>
+      <div className='divide-y divide-gray-200'>
         {articles.slice(0, articlesShown).map((article) => (
           <a key={article.guid} href={article.guid} className='block group py-2 mt-2' target='_blank' rel='noreferrer'>
-            <h3 className='font-semibold text-pretty text-gray-900 mb-2 leading-6 group-hover:underline'>{article.title}</h3>
+            <h3 className='text-base font-semibold text-pretty text-gray-900 mb-2 leading-6 group-hover:underline'>{article.title}</h3>
             <p className='text-sm text-pretty text-gray-500 line-clamp-3 leading-6'>{article.description}</p>
             <time dateTime={article.pubDate.toString()} className='block text-xs text-right text-gray-500'>{formatTimestamp(article.pubDate)}</time>
           </a>
