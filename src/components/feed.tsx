@@ -31,7 +31,7 @@ function formatTimestamp (timestamp: Date) {
 
 const Feed = ({ url }: TProps) => {
   const parser = new XMLParser()
-  const URL = 'https://corsproxy.io/?' + encodeURIComponent(url)
+  const URL = `https://cors-asib.onrender.com/${url}`
   const [title, setTitle] = useState('')
   const [updated, setUpdated] = useState<Date>(new Date())
   const [image, setImage] = useState<TImage>({
